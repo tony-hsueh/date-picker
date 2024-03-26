@@ -1,8 +1,42 @@
-# React + Vite
+# Date Range Calendar by React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 安裝
 
-Currently, two official plugins are available:
+Node.js 版本使用：20.11.1
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 取得專案
+
+```bash
+git clone https://github.com/tony-hsueh/date-picker.git
+```
+
+### 打開專案並安裝相關套件
+
+```bash
+npm install
+```
+
+### 運行專案
+
+```bash
+npm run dev
+```
+
+### 開啟專案
+
+在瀏覽器網址列輸入以下即可看到畫面
+
+```bash
+http://localhost:5173/
+```
+## 資料夾說明
+
+- src - 畫面放置處
+ - assets - 圖片
+- public - 靜態資源放置處
+
+## 專案技術
+
+- Node.js v20.11.1
+- React v18.2.0
+- Vite v5.2.0
