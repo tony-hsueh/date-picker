@@ -40,3 +40,5 @@ http://localhost:5173/
 - Node.js v20.11.1
 - React v18.2.0
 - Vite v5.2.0
+- dayjs v1.11.10
+- react-icons v5.0.1

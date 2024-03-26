@@ -1,42 +1,77 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.search-input {
+  width: 300px;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid rgb(70, 168, 255);
+  margin-top: 2rem;
+  margin-bottom: 3rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.date-picker-container {
+  width: 350px;
+  font-size: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.header > span {
+  user-select: none;
 }
 
-.card {
-  padding: 2em;
+.header > button {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-color: transparent;
+  background-color: white;
+  transition: .25s ease-in;
 }
 
-.read-the-docs {
-  color: #888;
+.header > button > svg {
+  font-size: 14px;
+  color: #1b1b1b;
+}
+
+.header > button:hover {
+  background-color: #e6e6e6;
+}
+
+.calendar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.calendar .day-btn {
+  width: 50px;
+  height: 36px;
+  color: #1b1b1b;
+  border-color: transparent;
+  background-color: white;
+  transition: .15s ease-in;
+}
+
+.calendar .day-btn.today {
+  background-color: #ffff76;
+}
+
+.calendar .day-btn.non-cur-month {
+  background-color: #757575;
+  cursor: not-allowed;
+}
+
+.calendar .day-btn:hover {
+  background-color: #e6e6e6;
+}
+
+.calendar .day-btn.active,
+.calendar .day-btn.today.active {
+  background-color: #006edc;
 }
