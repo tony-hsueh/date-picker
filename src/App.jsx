@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import dayjs from 'dayjs';
+import DateButton from './component/DateButton';
 import './App.css'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
@@ -25,12 +26,6 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
       setEndDate(dateObj)
       onChange && onChange([startDate, dateObj])
     }
-  }
-
-  const determineDateActive = (dateObj, startDate, endDate) => {
-    return dateObj.isSame(startDate, 'day') ||
-    dateObj.isSame(endDate, 'day') ||
-    (dateObj.isBefore(endDate, 'day') && dateObj.isAfter(startDate, 'day'))
   }
 
   return (
@@ -63,43 +58,39 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
           {Array.from({length: firstDayInMonth}, (v, i) => i).map((el,index) => {
             const dateformatByDayjs = dayObj.date(1).subtract(firstDayInMonth-index, 'day')
             return(
-              <button 
+              <DateButton 
                 key={dateformatByDayjs} 
-                className={`day-btn ${showOnlyCurMonth && "non-cur-month"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
-                disabled={showOnlyCurMonth}
-                onClick={() => {handleDateRange(dateformatByDayjs)}}
-                type='button'
-              >
-                {dateformatByDayjs.format("D")}日
-              </button>
+                showOnlyCurMonth={showOnlyCurMonth}
+                startDate={startDate}
+                endDate={endDate}
+                dateformatByDayjs={dateformatByDayjs}
+                handleDateRange={handleDateRange}
+              />
             )} 
           )}
           {Array.from({length: daysInMonth}, (v, i) => i).map((el,index) => {
-            const dateformatByDayjs = dayObj.date(index+1)
-            return(
-              <button 
+              const dateformatByDayjs = dayObj.date(index+1)
+              return <DateButton 
                 key={dateformatByDayjs} 
-                className={`day-btn ${dayjs().isSame(dateformatByDayjs, 'day') ? 'today' : 'not-today'} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
-                onClick={() => {handleDateRange(dateformatByDayjs)}}
-                type='button'
-              >
-                {dateformatByDayjs.format("D")}日
-              </button>  
-            )}
+                showOnlyCurMonth={null}
+                startDate={startDate}
+                endDate={endDate}
+                dateformatByDayjs={dateformatByDayjs}
+                handleDateRange={handleDateRange}
+              />
+            }
           )}
           {Array.from({length: 6 - lastDayInMonth}, (v, i) => i).map((el,index) => {
             const dateformatByDayjs = dayObj.date(daysInMonth).add(index + 1, 'day')
-            return (
-              <button 
+            return <DateButton 
                 key={dateformatByDayjs} 
-                className={`day-btn ${showOnlyCurMonth && "non-cur-month"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
-                disabled={showOnlyCurMonth}
-                onClick={() => {handleDateRange(dateformatByDayjs)}}
-                type='button'
-              >
-                {dateformatByDayjs.format("D")}日
-              </button>
-            )} 
+                showOnlyCurMonth={showOnlyCurMonth}
+                startDate={startDate}
+                endDate={endDate}
+                dateformatByDayjs={dateformatByDayjs}
+                handleDateRange={handleDateRange}
+              />
+            } 
           )}
         </div>
       </div>
