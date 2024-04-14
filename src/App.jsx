@@ -43,6 +43,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
               setDayObj(prev => prev.subtract(1, 'month'))
             }}
             disabled={showOnlyCurMonth}
+            type='button'
           >
             <FaChevronLeft />
           </button>
@@ -53,6 +54,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
               setDayObj(prev => prev.add(1, 'month'))
             }}
             disabled={showOnlyCurMonth}
+            type='button'
           >
             <FaChevronRight />
           </button>
@@ -66,6 +68,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 className={`day-btn ${showOnlyCurMonth && "non-cur-month"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
                 disabled={showOnlyCurMonth}
                 onClick={() => {handleDateRange(dateformatByDayjs)}}
+                type='button'
               >
                 {dateformatByDayjs.format("D")}日
               </button>
@@ -78,6 +81,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 key={dateformatByDayjs} 
                 className={`day-btn ${dayjs().isSame(dateformatByDayjs, 'day') ? 'today' : 'not-today'} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
                 onClick={() => {handleDateRange(dateformatByDayjs)}}
+                type='button'
               >
                 {dateformatByDayjs.format("D")}日
               </button>  
@@ -91,6 +95,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 className={`day-btn ${showOnlyCurMonth && "non-cur-month"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
                 disabled={showOnlyCurMonth}
                 onClick={() => {handleDateRange(dateformatByDayjs)}}
+                type='button'
               >
                 {dateformatByDayjs.format("D")}日
               </button>
