@@ -6,6 +6,6 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <DatePicker showOnlyCurMonth={true} />
-    <DatePicker />
+    <DatePicker onChange={(val) => {console.log(val)}} />
   </React.StrictMode>,
 )

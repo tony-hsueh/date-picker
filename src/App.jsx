@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 import './App.css'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa6";
 
-const DatePicker = ({showOnlyCurMonth = false}) => {
+const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
   const [dayObj, setDayObj] = useState(dayjs())
@@ -23,6 +23,7 @@ const DatePicker = ({showOnlyCurMonth = false}) => {
       setEndDate(null)
     } else {
       setEndDate(dateObj)
+      onChange && onChange([startDate, dateObj])
     }
   }
 

@@ -74,4 +74,5 @@
 .calendar .day-btn.active,
 .calendar .day-btn.today.active {
   background-color: #006edc;
+  color: white;
 }
