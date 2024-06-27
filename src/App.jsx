@@ -9,7 +9,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
   const [endDate, setEndDate] = useState(null)
   const [dayObj, setDayObj] = useState(dayjs())
   // 日曆上顯示年月份
-  const [curYear,curMonth] = dayObj.format("YYYY-MM").split('-');
+  const [curYear,curMonth] = dayObj.format("YYYY-M").split('-');
   // 第一行要有該月1號，所以先找出1號在禮拜幾，得到的數字就是要補幾天上個月的日期
   const firstDayInMonth = dayObj.date(1).day()
   // 這個月有幾天
@@ -42,7 +42,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
           >
             <FaChevronLeft />
           </button>
-          <span>{curYear}-{curMonth}</span>
+          <span>{curYear}年{curMonth}月</span>
           <button 
             className="next-month" 
             onClick={() => {
@@ -65,6 +65,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 endDate={endDate}
                 dateformatByDayjs={dateformatByDayjs}
                 handleDateRange={handleDateRange}
+                isCurMonth={false}
               />
             )} 
           )}
@@ -77,6 +78,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 endDate={endDate}
                 dateformatByDayjs={dateformatByDayjs}
                 handleDateRange={handleDateRange}
+                isCurMonth
               />
             }
           )}
@@ -89,6 +91,7 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
                 endDate={endDate}
                 dateformatByDayjs={dateformatByDayjs}
                 handleDateRange={handleDateRange}
+                isCurMonth={false}
               />
             } 
           )}

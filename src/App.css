@@ -63,7 +63,10 @@
 }
 
 .calendar .day-btn.non-cur-month {
-  background-color: #757575;
+  color: #757575;
+}
+
+.calendar .not-allowed {
   cursor: not-allowed;
 }
 
