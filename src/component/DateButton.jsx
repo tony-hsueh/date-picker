@@ -15,8 +15,8 @@ const DateButton = ({
 
   return (
     <button 
-      className={`day-btn ${dayjs().isSame(dateformatByDayjs, 'day') ? 'today': 'not-today'} ${!isCurMonth ? "non-cur-month" : 'cur-month'} ${showOnlyCurMonth ? "not-allowed" : "allowed"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
-      disabled={showOnlyCurMonth}
+      className={`day-btn ${dayjs().isSame(dateformatByDayjs, 'day') ? 'today': 'not-today'} ${!isCurMonth ? "non-cur-month" : 'cur-month'} ${(!isCurMonth && showOnlyCurMonth) ? "not-allowed" : "allowed"} ${determineDateActive(dateformatByDayjs, startDate, endDate) ? 'active' : 'inactive'}`}
+      disabled={!isCurMonth && showOnlyCurMonth}
       onClick={() => {handleDateRange(dateformatByDayjs)}}
       type='button'
     >

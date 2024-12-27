@@ -14,9 +14,19 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
   const firstDayInMonth = dayObj.date(1).day()
   // 這個月有幾天
   const daysInMonth = dayObj.daysInMonth()
-  // 該月最後一天需要補幾天 6 - lastDayInMonth
-  const lastDayInMonth = (firstDayInMonth + (daysInMonth%7 - 1)) > 6 ? (firstDayInMonth + (daysInMonth%7 - 1)) - 7 : (firstDayInMonth + (daysInMonth%7 - 1));
-  
+  // 這個月最後一天是星期幾，用 6 減去就是下個月該補的天數
+  const lastDayInMonth = dayObj.endOf('month').day()
+  const allDates = [];
+
+  for (let i = firstDayInMonth; i > 0; i--) {
+    allDates.push(dayObj.date(1).subtract(i, 'day'))
+  }
+  for (let i = 1; i <= daysInMonth; i++) {
+    allDates.push(dayObj.date(i))
+  }
+  for (let i = 1; i <= 6 - lastDayInMonth; i++) {
+    allDates.push(dayObj.endOf('month').add(i, 'day'))
+  }
 
   const handleDateRange = (dateObj) => {
     if (startDate === null || dateObj.isBefore(startDate)) {
@@ -54,47 +64,18 @@ const DatePicker = ({showOnlyCurMonth = false, onChange}) => {
             <FaChevronRight />
           </button>
         </div>
-        <div className='calendar'>
-          {Array.from({length: firstDayInMonth}, (v, i) => i).map((el,index) => {
-            const dateformatByDayjs = dayObj.date(1).subtract(firstDayInMonth-index, 'day')
-            return(
-              <DateButton 
-                key={dateformatByDayjs} 
-                showOnlyCurMonth={showOnlyCurMonth}
-                startDate={startDate}
-                endDate={endDate}
-                dateformatByDayjs={dateformatByDayjs}
-                handleDateRange={handleDateRange}
-                isCurMonth={false}
-              />
-            )} 
-          )}
-          {Array.from({length: daysInMonth}, (v, i) => i).map((el,index) => {
-              const dateformatByDayjs = dayObj.date(index+1)
-              return <DateButton 
-                key={dateformatByDayjs} 
-                showOnlyCurMonth={null}
-                startDate={startDate}
-                endDate={endDate}
-                dateformatByDayjs={dateformatByDayjs}
-                handleDateRange={handleDateRange}
-                isCurMonth
-              />
-            }
-          )}
-          {Array.from({length: 6 - lastDayInMonth}, (v, i) => i).map((el,index) => {
-            const dateformatByDayjs = dayObj.date(daysInMonth).add(index + 1, 'day')
-            return <DateButton 
-                key={dateformatByDayjs} 
-                showOnlyCurMonth={showOnlyCurMonth}
-                startDate={startDate}
-                endDate={endDate}
-                dateformatByDayjs={dateformatByDayjs}
-                handleDateRange={handleDateRange}
-                isCurMonth={false}
-              />
-            } 
-          )}
+        <div className='calendar'>   
+          {allDates.map(date => (
+            <DateButton 
+              key={date}
+              showOnlyCurMonth={showOnlyCurMonth}
+              startDate={startDate}
+              endDate={endDate}
+              dateformatByDayjs={date}
+              handleDateRange={handleDateRange}
+              isCurMonth={date.isSame(dayObj, 'month')}
+            />
+          ))}
         </div>
       </div>
     </div>
